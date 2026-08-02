@@ -1,0 +1,69 @@
+# ============================================================
+# HierFed-Matter-NSAC-DPBA 实验超参数配置
+# ============================================================
+# 注意：η、E_local、batch_size 论文未显式给出，
+#       以下为合理默认值，需用户根据原始实验代码确认调整
+
+# --- 训练（轻量版：CPU 友好） ---
+T: 50                   # 总 FL 训练轮数（轻量版减半，CPU 单次实验约 1 小时）
+eta: 0.01               # 本地学习率（v6: 回退v0值；oversampling关闭后η不宜过大）
+E_local: 5              # 每轮本地训练 epoch 数（需按原始实验确认）
+batch_size: 32          # 本地 mini-batch 大小
+
+# --- 拓扑（轻量版） ---
+N: 20                   # 总设备数（轻量版，CPU 可跑）
+M: 4                    # 网关数（= N/K）
+K: 5                    # 每网关设备数
+
+# --- 模型（轻量版：4 层 DNN，d=7,762 含 bias） ---
+input_dim_iotid20: 79      # 预处理后实际 79 维数值特征（drop 了 Flow_ID/Src_IP/Dst_IP/Timestamp）
+input_dim_cicids: 76
+hidden_dims: [64, 32, 16]  # 4 层 DNN: Input→FC64→FC32→FC16→Output(2)
+output_dim: 2           # 二分类 (normal / attack)
+
+# --- 数据分区 ---
+alpha: 0.5              # Dirichlet α（中度异构；另设 0.1 高异构）
+num_seeds: 5            # 独立实验种子数
+seed_range: [1, 2, 3, 4, 5]
+
+# --- DP 参数 ---
+epsilon_total: 3.0       # v6: 回退v0值；ε=3.0噪声经FL聚合稀释后防collapse，v0实测AUC=0.67
+delta: 1.0e-5
+clip_norm: 1.0          # 梯度裁剪范数 C
+beta_F: 0.9             # FIM EMA 平滑因子
+alpha_s: 0.5            # 设备敏感度权重 α_s
+beta_s_coeff: 0.3       # 设备敏感度权重 β_s
+gamma_s: 0.2            # 设备敏感度权重 γ_s
+
+# --- 设备类型 ---
+device_types:
+  camera: {sigma: 1.0, weight: 0.4}    # 占设备 40%
+  thermostat: {sigma: 0.3, weight: 0.3} # 占设备 30%
+  bulb: {sigma: 0.1, weight: 0.3}       # 占设备 30%
+
+# --- 数据集 ---
+datasets:
+  iotid20:
+    name: IoTID20
+    raw_path: data/raw/IoTID20.csv
+    processed_path: data/processed/iotid20_train.npz
+    test_path: data/processed/iotid20_test.npz
+    partition_path: data/processed/iotid20_partitions.json
+    total_samples: 625783
+    feature_dim: 80
+    normal_ratio: 0.064   # 40073/625783；标签映射: y==0=attack(93.6%), y==1=normal(6.4%)
+  cicids2017:
+    name: CICIDS2017
+    raw_path: data/raw/CICIDS2017/
+    processed_path: data/processed/cicids_train.npz
+    test_path: data/processed/cicids_test.npz
+    partition_path: data/processed/cicids_partitions.json
+    total_samples: 566934  # 子集
+    feature_dim: 76
+
+# --- 过采样（v5 关键参数） ---
+oversample_minority: false  # v6: 关闭！oversampling在FL极端不平衡下导致模型学反方向(AUC<0.5)；靠DP噪声防collapse
+
+# --- 评估 ---
+test_ratio: 0.2       # 测试集比例
+metrics: [f1, accuracy, auc_roc, precision, recall]

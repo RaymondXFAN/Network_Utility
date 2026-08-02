@@ -1,0 +1,11 @@
+{
+  "method": "proposed",
+  "dataset": "iotid20",
+  "alpha": 0.5,
+  "f1_mean": 0.12772771122809057,
+  "f1_std": 0.013682224904079155,
+  "accuracy_mean": 0.18095352237589588,
+  "auc_mean": 0.5789703372310328,
+  "speedup_mean": 97.2755646160634,
+  "num_seeds": 5
+}

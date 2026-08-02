@@ -1,0 +1,157 @@
+======================================================================
+HierFed-Matter-NSAC-DPBA 实验结果汇总
+======================================================================
+
+======================================================================
+【聚合结果】
+======================================================================
+
+文件: aggregate_proposed_iotid20_alpha0.1.json
+{
+  "method": "proposed",
+  "dataset": "iotid20",
+  "alpha": 0.1,
+  "f1_mean": 0.1279787329764269,
+  "f1_std": 0.013558617188523506,
+  "accuracy_mean": 0.18351190904224296,
+  "auc_mean": 0.6050200800808927,
+  "speedup_mean": 97.2755646160634,
+  "num_seeds": 5
+}
+
+文件: aggregate_proposed_iotid20_alpha0.5.json
+{
+  "method": "proposed",
+  "dataset": "iotid20",
+  "alpha": 0.5,
+  "f1_mean": 0.1279787329764269,
+  "f1_std": 0.013558617188523506,
+  "accuracy_mean": 0.18351190904224296,
+  "auc_mean": 0.6050200800808927,
+  "speedup_mean": 97.2755646160634,
+  "num_seeds": 5
+}
+
+======================================================================
+【每个 seed 的精简结果】
+======================================================================
+
+--- proposed_iotid20_alpha0.1_seed1 ---
+  Final: F1=0.1218, macro-F1=0.0764, Acc=0.0786, AUC=0.6689, thresh=0.45
+  Default(0.5): F1=0.0280, Acc=0.8924
+  Comm: speedup=57.6×, reduction=98.3%
+  总轮数: 50
+  Round 1: F1=0.1204, AUC=0.5352, CR=0.0875
+  Round 10: F1=0.1210, AUC=0.5566, CR=0.0875
+  Round 20: F1=0.1213, AUC=0.5707, CR=0.0875
+  Round 30: F1=0.1214, AUC=0.6155, CR=0.0875
+  Round 40: F1=0.1221, AUC=0.6493, CR=0.0875
+  Round 50: F1=0.1218, AUC=0.6689, CR=0.0875
+
+--- proposed_iotid20_alpha0.1_seed2 ---
+  Final: F1=0.1205, macro-F1=0.0616, Acc=0.0653, AUC=0.6108, thresh=0.35
+  Default(0.5): F1=0.0002, Acc=0.9358
+  Comm: speedup=59.8×, reduction=98.3%
+  总轮数: 50
+  Round 1: F1=0.1205, AUC=0.4071, CR=0.0844
+  Round 10: F1=0.1205, AUC=0.4309, CR=0.0844
+  Round 20: F1=0.1245, AUC=0.5024, CR=0.0844
+  Round 30: F1=0.1312, AUC=0.5619, CR=0.0844
+  Round 40: F1=0.1391, AUC=0.6237, CR=0.0844
+  Round 50: F1=0.1205, AUC=0.6108, CR=0.0844
+
+--- proposed_iotid20_alpha0.1_seed3 ---
+  Final: F1=0.1222, macro-F1=0.0788, Acc=0.0809, AUC=0.5434, thresh=0.45
+  Default(0.5): F1=0.0002, Acc=0.9356
+  Comm: speedup=42.5×, reduction=97.6%
+  总轮数: 50
+  Round 1: F1=0.1210, AUC=0.4798, CR=0.1187
+  Round 10: F1=0.1212, AUC=0.5001, CR=0.1187
+  Round 20: F1=0.1212, AUC=0.5434, CR=0.1187
+  Round 30: F1=0.1216, AUC=0.5764, CR=0.1187
+  Round 40: F1=0.1217, AUC=0.5264, CR=0.1187
+  Round 50: F1=0.1222, AUC=0.5434, CR=0.1187
+
+--- proposed_iotid20_alpha0.1_seed4 ---
+  Final: F1=0.1551, macro-F1=0.4586, Acc=0.6287, AUC=0.5463, thresh=0.45
+  Default(0.5): F1=0.0017, Acc=0.9349
+  Comm: speedup=268.9×, reduction=99.6%
+  总轮数: 50
+  Round 1: F1=0.1204, AUC=0.4548, CR=0.0188
+  Round 10: F1=0.1204, AUC=0.4739, CR=0.0188
+  Round 20: F1=0.1206, AUC=0.5331, CR=0.0188
+  Round 30: F1=0.1439, AUC=0.5592, CR=0.0188
+  Round 40: F1=0.1531, AUC=0.5566, CR=0.0188
+  Round 50: F1=0.1551, AUC=0.5463, CR=0.0188
+
+--- proposed_iotid20_alpha0.1_seed5 ---
+  Final: F1=0.1204, macro-F1=0.0602, Acc=0.0640, AUC=0.6556, thresh=0.05
+  Default(0.5): F1=0.1204, Acc=0.0640
+  Comm: speedup=57.6×, reduction=98.3%
+  总轮数: 50
+  Round 1: F1=0.1204, AUC=0.4165, CR=0.0875
+  Round 10: F1=0.1209, AUC=0.4789, CR=0.0875
+  Round 20: F1=0.1204, AUC=0.5175, CR=0.0875
+  Round 30: F1=0.1353, AUC=0.5801, CR=0.0875
+  Round 40: F1=0.2244, AUC=0.6211, CR=0.0875
+  Round 50: F1=0.1204, AUC=0.6556, CR=0.0875
+
+--- proposed_iotid20_alpha0.5_seed1 ---
+  Final: F1=0.1218, macro-F1=0.0764, Acc=0.0786, AUC=0.6689, thresh=0.45
+  Default(0.5): F1=0.0280, Acc=0.8924
+  Comm: speedup=57.6×, reduction=98.3%
+  总轮数: 50
+  Round 1: F1=0.1204, AUC=0.5352, CR=0.0875
+  Round 10: F1=0.1210, AUC=0.5566, CR=0.0875
+  Round 20: F1=0.1213, AUC=0.5707, CR=0.0875
+  Round 30: F1=0.1214, AUC=0.6155, CR=0.0875
+  Round 40: F1=0.1221, AUC=0.6493, CR=0.0875
+  Round 50: F1=0.1218, AUC=0.6689, CR=0.0875
+
+--- proposed_iotid20_alpha0.5_seed2 ---
+  Final: F1=0.1205, macro-F1=0.0616, Acc=0.0653, AUC=0.6108, thresh=0.35
+  Default(0.5): F1=0.0002, Acc=0.9358
+  Comm: speedup=59.8×, reduction=98.3%
+  总轮数: 50
+  Round 1: F1=0.1205, AUC=0.4071, CR=0.0844
+  Round 10: F1=0.1205, AUC=0.4309, CR=0.0844
+  Round 20: F1=0.1245, AUC=0.5024, CR=0.0844
+  Round 30: F1=0.1312, AUC=0.5619, CR=0.0844
+  Round 40: F1=0.1391, AUC=0.6237, CR=0.0844
+  Round 50: F1=0.1205, AUC=0.6108, CR=0.0844
+
+--- proposed_iotid20_alpha0.5_seed3 ---
+  Final: F1=0.1222, macro-F1=0.0788, Acc=0.0809, AUC=0.5434, thresh=0.45
+  Default(0.5): F1=0.0002, Acc=0.9356
+  Comm: speedup=42.5×, reduction=97.6%
+  总轮数: 50
+  Round 1: F1=0.1210, AUC=0.4798, CR=0.1187
+  Round 10: F1=0.1212, AUC=0.5001, CR=0.1187
+  Round 20: F1=0.1212, AUC=0.5434, CR=0.1187
+  Round 30: F1=0.1216, AUC=0.5764, CR=0.1187
+  Round 40: F1=0.1217, AUC=0.5264, CR=0.1187
+  Round 50: F1=0.1222, AUC=0.5434, CR=0.1187
+
+--- proposed_iotid20_alpha0.5_seed4 ---
+  Final: F1=0.1551, macro-F1=0.4586, Acc=0.6287, AUC=0.5463, thresh=0.45
+  Default(0.5): F1=0.0017, Acc=0.9349
+  Comm: speedup=268.9×, reduction=99.6%
+  总轮数: 50
+  Round 1: F1=0.1204, AUC=0.4548, CR=0.0188
+  Round 10: F1=0.1204, AUC=0.4739, CR=0.0188
+  Round 20: F1=0.1206, AUC=0.5331, CR=0.0188
+  Round 30: F1=0.1439, AUC=0.5592, CR=0.0188
+  Round 40: F1=0.1531, AUC=0.5566, CR=0.0188
+  Round 50: F1=0.1551, AUC=0.5463, CR=0.0188
+
+--- proposed_iotid20_alpha0.5_seed5 ---
+  Final: F1=0.1204, macro-F1=0.0602, Acc=0.0640, AUC=0.6556, thresh=0.05
+  Default(0.5): F1=0.1204, Acc=0.0640
+  Comm: speedup=57.6×, reduction=98.3%
+  总轮数: 50
+  Round 1: F1=0.1204, AUC=0.4165, CR=0.0875
+  Round 10: F1=0.1209, AUC=0.4789, CR=0.0875
+  Round 20: F1=0.1204, AUC=0.5175, CR=0.0875
+  Round 30: F1=0.1353, AUC=0.5801, CR=0.0875
+  Round 40: F1=0.2244, AUC=0.6211, CR=0.0875
+  Round 50: F1=0.1204, AUC=0.6556, CR=0.0875

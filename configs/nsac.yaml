@@ -1,0 +1,51 @@
+# ============================================================
+# NSAC 网络切片感知压缩参数（与论文 §4.2 + Figure 4 统一）
+# ============================================================
+# CR_s = (k_s / d) × (b_s / 32)
+# Latency: L_s = CR_s × |w| / BW_s + proc_s ≤ L_s_max
+
+slices:
+  urllc:
+    name: uRLLC
+    k_ratio: 0.1         # k_s = 0.1 × d（取 10% 参数）
+    b_bits: 8             # 8-bit 量化
+    CR: 0.025             # 压缩比 = 0.1 × 8/32 = 0.025 → 40×
+    compression_factor: 40
+    BW_mbps: 10           # 带宽 10 Mbps
+    L_max_ms: 200         # 最大延迟 200 ms
+    proc_ms: 12           # 处理延迟 12 ms
+    priority: latency
+
+  embb:
+    name: eMBB
+    k_ratio: 0.3         # k_s = 0.3 × d（取 30% 参数）
+    b_bits: 16            # 16-bit 量化
+    CR: 0.15              # 压缩比 = 0.3 × 16/32 = 0.15 → ~7×
+    compression_factor: 7
+    BW_mbps: 100          # 带宽 100 Mbps
+    L_max_ms: 500         # eMBB 延迟容忍更高
+    proc_ms: 8            # 处理延迟 8 ms
+    priority: throughput
+
+  mmtc:
+    name: mMTC
+    k_ratio: 0.05        # k_s = 0.05 × d（取 5% 参数）
+    b_bits: 8             # 8-bit 量化
+    CR: 0.0125            # 压缩比 = 0.05 × 8/32 = 0.0125 → 80×
+    compression_factor: 80
+    BW_mbps: 1            # 带宽 1 Mbps
+    L_max_ms: 1000        # mMTC 延迟容忍最高
+    proc_ms: 5            # 处理延迟 5 ms（ESP32-S3）
+    priority: energy
+
+# 网关切片分配策略
+slice_assignment:
+  strategy: round_robin   # 网关按轮询分配到不同切片（模拟异构路径）
+  # 实际上每网关可按其下设备类型主导选切片：
+  # camera-heavy → uRLLC, thermostat-heavy → eMBB, bulb-heavy → mMTC
+
+# 压缩延迟自适应调整
+adaptive_k_down:
+  enabled: true
+  min_k_ratio: 0.01       # 自适应下调 k 的最低限
+  step: 0.01              # 每次下调步长
